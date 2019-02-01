@@ -31,6 +31,18 @@ export async function getJob(id) {
   return job;
 }
 
+export async function getCompany(id) {
+  const query = `query CompanyQuery($id: ID!) {
+    company(id: $id) {
+      id
+      name
+      description
+    }
+  }`;
+  const {company} = await graphqlRequest(query, {id});
+  return company;
+}
+
 async function graphqlRequest(query, variables={}) {
   const response = await fetch(endpointURL, {
     method: 'POST',
