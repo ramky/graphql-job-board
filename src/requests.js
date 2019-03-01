@@ -35,7 +35,7 @@ export async function loadJobs() {
       }
     }
   }`
-  const {data: {jobs}} = await client.query({query})
+  const {data: {jobs}} = await client.query({query, fetchPolicy: 'no-cache'})
   return jobs;
 }
 
